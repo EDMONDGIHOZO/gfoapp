@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
-import GStyles from "../../shared/Gstyle";
+import GlobalStyles from "../../shared/GlobalStyles";
 
 const Issues = () => {
   return (
-    <View style={GStyles.container}>
+    <View style={GlobalStyles.container}>
       <Text> Issuespage</Text>
     </View>
   );

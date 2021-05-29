@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BottomNav from "./routes/BottomNav";
+import BottomNav from "./src/routes/BottomNav";
 import { NavigationContainer } from "@react-navigation/native";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
