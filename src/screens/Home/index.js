@@ -1,16 +1,24 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import GlobalStyles from "../../shared/GlobalStyles";
 import Header from "../../components/Header";
+import CurrentIssue from "../Issues/CurrentIssue";
+import Tags from "../../components/Tags";
+import Featured from "../../components/FeaturedArticles";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Home = () => {
   return (
-    <View style={GlobalStyles.container}>
-      <Header />
-      <View style={GlobalStyles.contents}>
-        <Text>Contents here</Text>
-      </View>
-    </View>
+    <SafeAreaView style={GlobalStyles.container}>
+      <Header title={"Welcome to Aidspan"} />
+      <ScrollView>
+        <View style={GlobalStyles.contents}>
+          <CurrentIssue />
+          <Tags />
+          <Featured />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

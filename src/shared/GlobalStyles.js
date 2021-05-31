@@ -10,7 +10,7 @@ const colors = {
 const GlobalStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#F5F5F5",
   },
 
   header: {
@@ -21,12 +21,12 @@ const GlobalStyles = StyleSheet.create({
     flexDirection: "row",
     paddingTop: 40,
     padding: 10,
-    backgroundColor: "#fff",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.3,
-    shadowRadius: 1,
-    elevation: 5,
+
+    // shadowColor: "#000",
+    // shadowOffset: { width: 0, height: 1 },
+    // shadowOpacity: 0.3,
+    // shadowRadius: 1,
+    // elevation: 5,
   },
 
   contents: {
@@ -34,11 +34,13 @@ const GlobalStyles = StyleSheet.create({
     flex: 1,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
+    backgroundColor: "#fafafa",
   },
 
   title: {
-    fontFamily: "nunito-light",
-    fontSize: 24,
+    fontFamily: "nunito-regular",
+    fontSize: 18,
+    textTransform: "uppercase",
   },
   headerTitle: {
     fontFamily: "nunito-bold",
@@ -49,7 +51,7 @@ const GlobalStyles = StyleSheet.create({
   languageBox: {
     width: 40,
     height: 40,
-    borderRadius: 12,
+    borderRadius: 20,
     backgroundColor: "#f46517",
     textAlign: "center",
     justifyContent: "center",
@@ -69,14 +71,6 @@ const GlobalStyles = StyleSheet.create({
     backgroundColor: "#00adef",
     height: width / 5.3,
     padding: 10,
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 2,
-      height: 6,
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 3.5,
-    elevation: 4,
   },
 
   tab: {
@@ -114,10 +108,8 @@ const GlobalStyles = StyleSheet.create({
   button: {
     padding: 15,
     backgroundColor: "black",
-    height: width / 8,
-
-    borderTopRightRadius: 30,
-    borderBottomRightRadius: 30,
+    margin: 10,
+    borderRadius: 30,
     backgroundColor: colors.secondary,
     justifyContent: "center",
     alignItems: "center",
@@ -127,6 +119,27 @@ const GlobalStyles = StyleSheet.create({
     color: "#fff",
     fontFamily: "nunito-bold",
     fontSize: 16,
+  },
+
+  tags: {
+    marginTop: 10,
+    paddingTop: 20,
+  },
+  featured: {
+    flex: 1,
+    marginTop: 30,
+    backgroundColor: "#F3F7F9",
+    padding: 20,
+    borderRadius: 15,
+    minHeight: 416,
+    marginBottom: 80,
+    borderWidth: Platform.OS === "ios" ? 0.5 : 0,
+    borderColor: "#00adef",
+  },
+  featuredTitle: {
+    fontFamily: "nunito-bold",
+    fontSize: 18,
+    textTransform: "uppercase",
   },
 });
 
