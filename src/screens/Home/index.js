@@ -6,22 +6,21 @@ import CurrentIssue from "../Issues/CurrentIssue";
 import Tags from "../../components/Tags";
 import Featured from "../../components/FeaturedArticles";
 import { ScrollView } from "react-native-gesture-handler";
-import Background from "../../components/Background";
+import { uidata } from "../../Languages/fr";
 
 const Home = () => {
-	return (
-		<SafeAreaView style={GlobalStyles.container}>
-			<Background />
-			<Header title={"Welcome to Aidspan"} />
-			<ScrollView>
-				<View style={GlobalStyles.contents}>
-					<CurrentIssue />
-					<Tags />
-					<Featured />
-				</View>
-			</ScrollView>
-		</SafeAreaView>
-	);
+  return (
+    <SafeAreaView style={GlobalStyles.container}>
+      <Header title={uidata.welcome} />
+      <ScrollView>
+        <View style={GlobalStyles.contents}>
+          <CurrentIssue />
+          <Tags />
+          <Featured />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
 };
 
 export default Home;

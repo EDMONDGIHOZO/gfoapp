@@ -1,12 +1,18 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import GlobalStyles from "../../shared/GlobalStyles";
+import Header from "../../components/Header";
 
 const Favorites = () => {
   return (
-    <View style={GlobalStyles.container}>
-      <Text> Favoritespage</Text>
-    </View>
+    <SafeAreaView style={GlobalStyles.container}>
+      <Header title={"BOOKMARKS"} />
+      <View style={GlobalStyles.contents}>
+        <View>
+          <Text>Book marks </Text>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
