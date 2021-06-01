@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text } from "react-native";
 import GlobalStyles from "../../shared/GlobalStyles";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
-const Choice = ({ title, id }) => {
-	return (
-		<View style={GlobalStyles.smallCard}>
-			<Text style={GlobalStyles.title}>{title}</Text>
-			<MaterialIcons name="check-box" size={24} color="black" />
-		</View>
-	);
+const Choice = ({ title, selected }) => {
+  return (
+    <View style={GlobalStyles.smallCard}>
+      <Text style={GlobalStyles.title}>{title}</Text>
+      {selected ? <Ionicons name="checkbox" size={24} color="#00adef" /> : null}
+    </View>
+  );
 };
 
 export default Choice;
