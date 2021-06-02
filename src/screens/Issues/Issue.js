@@ -3,10 +3,12 @@ import { View, Text, TouchableOpacity, Share } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import GlobalStyles from "../../shared/GlobalStyles";
 import Styles from "./styles";
+import i18n from "../../i18n";
 
 import moment from "moment";
 import "moment/locale/fr";
-moment.locale("en");
+let lang = i18n.locale;
+moment.locale(lang);
 
 const Issue = ({ title, date, nid }) => {
   const issueDate = moment.unix(date).format("MMMM D, YYYY");
@@ -42,7 +44,7 @@ const Issue = ({ title, date, nid }) => {
             color: title.includes("Special") ? "#f46517" : "#000",
           }}
         >
-          {title.length > 15 ? title.substring(0, 10, -3) + "..." : title}
+          {title}
         </Text>
         <Text style={Styles.date}>{issueDate}</Text>
       </View>

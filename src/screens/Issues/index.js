@@ -5,17 +5,19 @@ import {
   SafeAreaView,
   FlatList,
   ActivityIndicator,
-  TextInput,
+  Platform,
 } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import GlobalStyles from "../../shared/GlobalStyles";
-import Background from "../../components/Background";
+import colors from "../../shared/colors";
+
 import Header from "../../components/Header";
 import axios from "axios";
 import Loading from "../../components/Loading";
 import Issue from "./Issue";
-import { uidata } from "../../Languages/fr";
 import Styles from "./styles";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import i18n from "../../i18n";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Issues = () => {
   const [issues, setIssues] = useState([]);
@@ -25,22 +27,12 @@ const Issues = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [lang, setLang] = useState("");
 
-  const languageGetter = async () => {
-    try {
-      const value = await AsyncStorage.getItem("language");
-      if (value !== null) {
-        setLang(value);
-      }
-    } catch (e) {
-      // error reading value
-    }
-  };
-
   const getData = async () => {
     await axios
-      .get(`/${lang}?page=${currentPage}`)
+      .get(`${lang === "fr" ? "/ofm" : "/gfo"}?page=${currentPage}`)
       .then((res) => {
         let data = res.data.data;
+        issues.length = 0;
         let mixed = Array.from(new Set(issues.concat(data)));
         setIssues(mixed);
         setLoaded(true);
@@ -54,14 +46,13 @@ const Issues = () => {
 
   const refresher = () => {
     setRefreshing(true);
+    setIssues([]);
     setCurrentPage(1);
     setIssues([]);
     getData();
   };
 
   useEffect(() => {
-    languageGetter();
-    setIsLoading(true);
     getData();
     return () => {};
   }, [currentPage, lang]);
@@ -80,12 +71,77 @@ const Issues = () => {
     setIsLoading(true);
   };
 
+  const handleFilter = (value) => {
+    setRefreshing(true);
+    setLang(value);
+  };
+
   if (loaded) {
     return (
       <SafeAreaView style={GlobalStyles.container}>
-        <Header title={uidata.issues} />
+        <Header title={i18n.t("issuesTitle")} />
+
         <View style={GlobalStyles.contents}>
+          <View style={Styles.filter}>
+            <Text
+              style={{
+                fontFamily: "nunito-regular",
+                fontSize: 18,
+                color: "#798C8E",
+              }}
+            >
+              Filter Issues Type
+            </Text>
+            <View style={Styles.pickerContainer}>
+              {Platform.OS === "ios" ? (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    flex: 2,
+                  }}
+                >
+                  <TouchableOpacity
+                    onPress={() => handleFilter("en")}
+                    style={{
+                      backgroundColor:
+                        lang === "en" ? colors.accent : colors.main,
+                      borderRadius: 8,
+                      padding: 10,
+                    }}
+                  >
+                    <Text style={GlobalStyles.buttonText}>GFO</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => handleFilter("fr")}
+                    style={{
+                      backgroundColor:
+                        lang === "fr" ? colors.accent : colors.main,
+                      borderRadius: 8,
+                      padding: 10,
+                    }}
+                  >
+                    <Text style={GlobalStyles.buttonText}>OFM</Text>
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <Picker
+                  mode={"dialog"}
+                  selectedValue={lang}
+                  onValueChange={(itemValue, itemIndex) =>
+                    handleFilter(itemValue)
+                  }
+                  itemStyle={{ color: "grey", fontFamily: "nunito-bold" }}
+                >
+                  <Picker.Item label="GFO" value="en" />
+                  <Picker.Item label="OFM" value="fr" />
+                </Picker>
+              )}
+            </View>
+          </View>
           <FlatList
+            style={{ height: "100%" }}
             data={issues}
             refreshing={refreshing}
             onRefresh={() => refresher()}
@@ -105,7 +161,6 @@ const Issues = () => {
   } else {
     return (
       <SafeAreaView style={GlobalStyles.container}>
-        <Background />
         <Loading percentage={100} />
       </SafeAreaView>
     );

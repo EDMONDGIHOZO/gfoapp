@@ -2,19 +2,14 @@ import { StyleSheet, Dimensions, Platform } from "react-native";
 
 const { width } = Dimensions.get("window");
 const { height } = Dimensions.get("window");
-
-const colors = {
-  main: "#00adef",
-  secondary: "#f46517",
-  bluebg: "rgba(0,212,255,1) 100%)",
-};
+import colors from "./colors";
 
 const SPACING = 20;
 
 const GlobalStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.bluebg,
+    backgroundColor: colors.lightGrey,
     height: "100%",
   },
   backgroundImage: {
@@ -28,9 +23,9 @@ const GlobalStyles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
-    paddingTop: 40,
+    paddingTop: 30,
     padding: 10,
-
+    backgroundColor: colors.lightGrey,
     // shadowColor: "#000",
     // shadowOffset: { width: 0, height: 1 },
     // shadowOpacity: 0.3,
@@ -46,6 +41,13 @@ const GlobalStyles = StyleSheet.create({
     marginBottom: height / 9,
   },
 
+  currentissueContent: {
+    backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+
   title: {
     fontFamily: "nunito-regular",
     fontSize: 18,
@@ -54,7 +56,7 @@ const GlobalStyles = StyleSheet.create({
   headerTitle: {
     fontFamily: "nunito-bold",
     fontSize: 24,
-    color: "#fff",
+    color: colors.main,
   },
 
   languageBox: {
@@ -125,7 +127,7 @@ const GlobalStyles = StyleSheet.create({
 
   buttonText: {
     color: "#fff",
-    fontFamily: "nunito-bold",
+    fontFamily: "nunito-extra-bold",
     fontSize: 16,
   },
 
@@ -136,6 +138,9 @@ const GlobalStyles = StyleSheet.create({
 
   // ----------------- Featured articles ----------------- //
   featured: {
+    borderWidth: 0.3,
+    borderColor: colors.accent,
+
     padding: SPACING / 4,
     marginBottom: SPACING,
     backgroundColor: "rgba(255, 255, 255, 0.8)",
@@ -192,6 +197,7 @@ const GlobalStyles = StyleSheet.create({
     flexDirection: "row",
     padding: SPACING / 8,
     marginBottom: SPACING,
+    borderBottomColor: colors.accent,
   },
 
   titleContainer: {
@@ -243,6 +249,7 @@ const GlobalStyles = StyleSheet.create({
   //   - settings
   safeScrollable: {
     marginBottom: height / 10,
+    marginTop: 30,
   },
 
   checkboxContainer: {
@@ -253,7 +260,9 @@ const GlobalStyles = StyleSheet.create({
     alignSelf: "center",
   },
   label: {
-    margin: 8,
+    backgroundColor: "red",
+    borderRadius: 8,
+    padding: 10,
   },
 });
 

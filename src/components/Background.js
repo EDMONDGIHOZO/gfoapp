@@ -8,7 +8,6 @@ const Background = () => {
   return (
     <Image
       source={BG_IMG}
-      blurRadius={2}
       resizeMode="contain"
       style={GlobalStyles.backgroundImage}
     />

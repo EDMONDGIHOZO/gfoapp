@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BottomNav from "./src/routes/BottomNav";
 import { NavigationContainer } from "@react-navigation/native";
 import AppLoading from "expo-app-loading";
@@ -17,6 +17,8 @@ const App = () => {
     "nunito-bold": require("./assets/fonts/NunitoSans-Bold.ttf"),
     "nunito-extra-bold": require("./assets/fonts/NunitoSans-ExtraBold.ttf"),
   });
+
+  // check default language
 
   if (!fontsLoaded) {
     return <AppLoading />;

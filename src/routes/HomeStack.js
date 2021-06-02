@@ -16,19 +16,21 @@ const HomeStack = () => {
         }}
       />
       <Screen
-        name="Settings"
+        name="More"
         component={Settings}
         options={{
           headerStyle: {
             backgroundColor: "rgba(0,212,255,1) 100%)",
             elevation: 0,
           },
+
           headerTitleStyle: {
             fontFamily: "nunito-bold",
             color: "#fff",
+            display: "none",
           },
           headerBackTitleStyle: {
-            color: "white",
+            display: "none",
           },
         }}
       />

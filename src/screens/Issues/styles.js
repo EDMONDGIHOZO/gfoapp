@@ -4,92 +4,105 @@ const SPACING = 15;
 const RADIUS = 12;
 
 const Styles = StyleSheet.create({
-	container: {
-		height: 180,
-		backgroundColor: "rgba(255, 255, 255, 0.9)",
-		borderRadius: 15,
-		width: "100%",
-		padding: 25,
-		shadowColor: "#dadbdb",
-		shadowOffset: { width: 1, height: 1.5 },
-		shadowOpacity: 0.5,
-		shadowRadius: 1,
-		elevation: 1,
-	},
-	title: {
-		fontFamily: "nunito-regular",
-		color: "#00adef",
-		fontSize: 16,
-		textTransform: "uppercase",
-		opacity: 2,
-	},
+  container: {
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    borderRadius: 15,
+    width: "100%",
+    padding: 25,
+    shadowColor: "#dadbdb",
+    shadowOffset: { width: 1, height: 1.5 },
+    shadowOpacity: 0.5,
+    shadowRadius: 1,
+    elevation: 1,
+    marginTop: 20,
+  },
 
-	issueNumber: {
-		fontFamily: "nunito-extra-bold",
-		textAlign: "center",
-		fontSize: 35,
-		marginTop: 15,
-		marginBottom: 15,
-		color: "#f46517",
-	},
+  title: {
+    fontFamily: "nunito-regular",
+    color: "#00adef",
+    fontSize: 16,
+    textTransform: "uppercase",
+    opacity: 2,
+  },
 
-	infoContainer: {
-		justifyContent: "space-between",
-		flexDirection: "row",
-		alignItems: "center",
-		padding: 10,
-	},
+  issueNumber: {
+    fontFamily: "nunito-extra-bold",
+    textAlign: "center",
+    fontSize: 25,
+    marginTop: 1,
+    marginBottom: 15,
+    color: "#fff",
+    textTransform: "uppercase",
+  },
 
-	infoText: {
-		fontFamily: "nunito-bold",
-		fontSize: 15,
-	},
+  infoContainer: {
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
 
-	articleContainer: {
-		marginBottom: SPACING / 4,
-		padding: SPACING / 2,
-		borderRadius: RADIUS,
-		justifyContent: "space-between",
-		flexDirection: "row",
-		backgroundColor: "rgba(255, 255, 255, 0.8)",
-		borderRadius: 15,
-		shadowColor: "#00adef",
-		shadowOffset: {
-			width: 0,
-			height: 6,
-		},
-		shadowOpacity: 0.6,
-		shadowRadius: 2,
-		marginTop: SPACING,
-	},
+    width: "100%",
+  },
 
-	article: {
-		justifyContent: "space-between",
-		flexDirection: "column",
-		marginBottom: SPACING / 2,
-		maxWidth: "70%",
-	},
+  infoText: {
+    fontFamily: "nunito-bold",
+    fontSize: 15,
+    textTransform: "capitalize",
+    color: "#fff",
+  },
 
-	date: {
-		fontFamily: "nunito-bold",
-		opacity: 0.9,
-		textTransform: "uppercase",
-	},
+  articleContainer: {
+    marginBottom: SPACING / 4,
+    padding: SPACING / 2,
+    borderRadius: RADIUS,
+    justifyContent: "space-between",
+    flexDirection: "row",
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    borderRadius: 15,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    marginTop: SPACING,
+  },
 
-	loader: {
-		marginTop: 20,
-		alignItems: "center",
-	},
+  article: {
+    justifyContent: "space-between",
+    flexDirection: "column",
+    marginBottom: SPACING / 2,
+    maxWidth: "60%",
+  },
 
-	textInput: {
-		height: 50,
-		borderWidth: 1,
-		padding: 20,
-		margin: 5,
-		borderColor: "#009688",
-		backgroundColor: "#fff",
-		borderRadius: 10,
-	},
+  date: {
+    fontFamily: "nunito-bold",
+    opacity: 0.9,
+    textTransform: "uppercase",
+  },
+
+  loader: {
+    marginTop: 20,
+    alignItems: "center",
+  },
+
+  filter: {
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: "#fff",
+  },
+
+  pickerContainer: {
+    borderLeftWidth: 1,
+    borderLeftColor: "#F46517",
+    width: "40%",
+    paddingLeft: 10,
+    minHeight: 60,
+  },
 });
 
 export default Styles;
