@@ -169,6 +169,20 @@ const GlobalStyles = StyleSheet.create({
     marginTop: SPACING,
     margin: SPACING / 2,
   },
+  articlecard: {
+    padding: SPACING,
+    backgroundColor: "#fff",
+    elevation: 1,
+    borderRadius: 10,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 6,
+    // },
+    // shadowOpacity: 0.2,
+    // shadowRadius: 10,
+    margin: SPACING / 2,
+  },
   smallCard: {
     padding: SPACING,
     marginBottom: SPACING,
@@ -203,6 +217,15 @@ const GlobalStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+
+  toprow: {
+    padding: 10,
+    justifyContent: "space-between",
+    flexDirection: "row",
+    borderColor: colors.lightGrey,
+    borderBottomWidth: 1,
+    marginBottom: 10,
   },
 
   cardTitleContainer: {
