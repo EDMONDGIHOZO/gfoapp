@@ -8,10 +8,12 @@ import {
 } from "react-native";
 import axios from "axios";
 import CurrentIssue from "../Issues/CurrentIssue";
+import i18n from "../../i18n";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { height } = Dimensions.get("window");
 
-const CurrentIssuesContainer = () => {
+const CurrentIssuesContainer = ({ navigation }) => {
   const [currentissues, setCurrentIssues] = useState([]);
   const [fetching, setFetching] = useState(true);
 
@@ -46,7 +48,7 @@ const CurrentIssuesContainer = () => {
           color: "rgba(0,212,255,1) ",
         }}
       >
-        Current GFO & OFM Issues{" "}
+        {i18n.t("currentIssueTitle")}
       </Text>
       {fetching ? (
         <ActivityIndicator size="large" color="#fff" />
@@ -65,6 +67,7 @@ const CurrentIssuesContainer = () => {
                 title={"current Issue"}
                 issueTitle={issue.title}
                 date={issue.changed}
+                nid={issue.nid}
                 articlesNumber={issue.__meta__.related_articles_count}
               />
             );

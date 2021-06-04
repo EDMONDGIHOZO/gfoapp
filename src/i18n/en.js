@@ -5,4 +5,6 @@ export default {
   navIssues: "issues",
   navbookmarks: "bookmarks",
   navSearch: "Search",
+  currentIssueTitle: "Current  GFO Issues",
+  filterIssueType: "Filter Issues Type",
 };

@@ -1,11 +1,12 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Issues from "../screens/Issues";
+
 import Favorites from "../screens/Favorites";
 import Search from "../screens/Search";
 import GlobalStyles from "../shared/GlobalStyles";
 import NavTab from "../components/NavTab";
 import HomeStack from "./HomeStack";
+import IssueStack from "./IssueStack";
 import i18n from "../i18n";
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -39,7 +40,7 @@ const BottomNav = () => {
             />
           ),
         }}
-        component={Issues}
+        component={IssueStack}
       />
 
       <Screen

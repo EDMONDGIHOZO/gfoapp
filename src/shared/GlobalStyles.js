@@ -157,17 +157,16 @@ const GlobalStyles = StyleSheet.create({
   card: {
     padding: SPACING,
     marginBottom: SPACING,
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    backgroundColor: "rgba(255, 255, 255, .9)",
     borderRadius: 15,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 6,
+    // },
+    // shadowOpacity: 0.2,
+    // shadowRadius: 10,
     marginTop: SPACING,
-    elevation: 3,
     margin: SPACING / 2,
   },
   smallCard: {
@@ -191,6 +190,32 @@ const GlobalStyles = StyleSheet.create({
     fontFamily: "nunito-bold",
     fontSize: 20,
     marginBottom: SPACING,
+  },
+
+  cardText: {
+    fontFamily: "nunito-regular",
+    fontSize: 16,
+    lineHeight: 26,
+    marginVertical: SPACING,
+  },
+
+  cardFooter: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  cardTitleContainer: {
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+
+  cardtitle: {
+    fontFamily: "nunito-bold",
+    fontSize: 24,
+    textTransform: "capitalize",
+    color: "#5D6060",
   },
 
   articleRow: {

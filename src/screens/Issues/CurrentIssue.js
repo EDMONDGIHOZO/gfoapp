@@ -4,8 +4,12 @@ import Styles from "./styles";
 import moment from "moment";
 import "moment/locale/fr";
 
-const CurrentIssue = ({ title, issueTitle, date, articlesNumber }) => {
+import { useNavigation, NavigationContainer } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+
+const CurrentIssue = ({ issueTitle, date, articlesNumber, nid }) => {
   const issueDate = moment.unix(date).format("MMMM D, YYYY");
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -18,7 +22,16 @@ const CurrentIssue = ({ title, issueTitle, date, articlesNumber }) => {
         backgroundColor: "rgba(0,212,255,1) ",
       }}
     >
-      <Text style={Styles.issueNumber}>{issueTitle}</Text>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("singleIssue", {
+            issueId: nid,
+            issueTitle: issueTitle,
+          })
+        }
+      >
+        <Text style={Styles.issueNumber}>{issueTitle}</Text>
+      </TouchableOpacity>
       <View style={Styles.infoContainer}>
         <Text style={Styles.infoText}>{issueDate}</Text>
         <Text style={Styles.infoText}>{articlesNumber} articles</Text>

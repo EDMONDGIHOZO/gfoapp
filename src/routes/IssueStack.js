@@ -1,42 +1,26 @@
 import React from "react";
-import Settings from "../screens/Settings";
 import { createStackNavigator } from "@react-navigation/stack";
-import Home from "../screens/Home";
+import Issues from "../screens/Issues";
 import SingleIssue from "../screens/SingleIssue";
-import { BlurView } from "expo-blur";
-import StyleSheet from "react-native";
 import colors from "../shared/colors";
-
 const { Navigator, Screen } = createStackNavigator();
 
-const HomeStack = () => {
+const IssueStack = () => {
   return (
     <Navigator headerMode={"screen"}>
       <Screen
-        name="Home"
-        component={Home}
+        name="issues"
         options={{
           headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <NavTab
+              focus={focused}
+              name={i18n.t("navIssues")}
+              iconName="menu-book"
+            />
+          ),
         }}
-      />
-      <Screen
-        name="More"
-        component={Settings}
-        options={{
-          headerStyle: {
-            backgroundColor: colors.main,
-            elevation: 0,
-          },
-
-          headerTitleStyle: {
-            fontFamily: "nunito-bold",
-            color: "#fff",
-            display: "none",
-          },
-          headerBackTitleStyle: {
-            display: "none",
-          },
-        }}
+        component={Issues}
       />
 
       <Screen
@@ -59,4 +43,4 @@ const HomeStack = () => {
   );
 };
 
-export default HomeStack;
+export default IssueStack;

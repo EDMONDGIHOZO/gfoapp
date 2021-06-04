@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import axios from "axios";
+import db from "./src/http/db";
 
 // http configuration
 axios.defaults.baseURL = "https://webapi.aidspan.org/api/v1";
@@ -11,6 +12,20 @@ axios.defaults.timeout = 20000;
 // end of http
 
 const App = () => {
+  useEffect(() => {
+    createTable();
+    return () => {};
+  }, []);
+
+  const createTable = async () => {
+    await db.transaction((tx) => {
+      tx.executeSql(
+        "create table if not exists issuebookmarks (id integer primary key not null unique, title text, date text , nid integer , type text);"
+      );
+    });
+    console.log("table created");
+  };
+
   let [fontsLoaded] = useFonts({
     "nunito-regular": require("./assets/fonts/NunitoSans-Regular.ttf"),
     "nunito-light": require("./assets/fonts/NunitoSans-Light.ttf"),

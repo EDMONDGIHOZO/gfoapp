@@ -1,17 +1,39 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Share } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, TouchableOpacity, Share, Alert } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import GlobalStyles from "../../shared/GlobalStyles";
 import Styles from "./styles";
 import i18n from "../../i18n";
-
 import moment from "moment";
 import "moment/locale/fr";
+import db from "../../http/db";
 let lang = i18n.locale;
 moment.locale(lang);
 
-const Issue = ({ title, date, nid }) => {
-  const issueDate = moment.unix(date).format("MMMM D, YYYY");
+import { DateFormat } from "../../shared/DateFormat";
+
+const Issue = ({ title, date, nid, type }) => {
+  const navigation = useNavigation();
+  // save the bookmark to db
+  const setData = async () => {
+    console.log("starting to save");
+    if (title.length == 0 || date.length == 0 || nid.length == 0) {
+      Alert("Warning!", "we got nothing to save");
+    } else {
+      try {
+        await db.transaction(async (tx) => {
+          await tx.executeSql(
+            "INSERT INTO issuebookmarks (id,title, nid, type, date) VALUES (?,?, ?,?,?)",
+            [nid, title, nid, type, date]
+          );
+        });
+        alert("bookmark saved!");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   const onShare = async () => {
     try {
@@ -46,10 +68,17 @@ const Issue = ({ title, date, nid }) => {
         >
           {title}
         </Text>
-        <Text style={Styles.date}>{issueDate}</Text>
+        <Text style={Styles.date}>{DateFormat(date)}</Text>
       </View>
       <View style={GlobalStyles.iconsContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("singleIssue", {
+              issueId: nid,
+              issueTitle: title,
+            })
+          }
+        >
           <MaterialIcons
             name="open-in-new"
             size={24}
@@ -61,7 +90,7 @@ const Issue = ({ title, date, nid }) => {
             }}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={setData}>
           <MaterialIcons name="bookmark" size={24} color="black" />
         </TouchableOpacity>
 

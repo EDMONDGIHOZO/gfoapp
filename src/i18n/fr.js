@@ -5,4 +5,6 @@ export default {
   navIssues: "éditions",
   navbookmarks: "signets",
   navSearch: "rechercher",
+  currentIssueTitle: "Éditions actuels de OFM",
+  filterIssueType: "Filtrer le type d'éditions",
 };

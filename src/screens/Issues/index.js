@@ -90,7 +90,7 @@ const Issues = () => {
                 color: "#798C8E",
               }}
             >
-              Filter Issues Type
+              {i18n.t("filterIssueType")}
             </Text>
             <View style={Styles.pickerContainer}>
               {Platform.OS === "ios" ? (
@@ -150,7 +150,12 @@ const Issues = () => {
             keyExtractor={(item) => item.nid.toString()}
             renderItem={({ item, index }) => {
               return (
-                <Issue title={item.title} date={item.created} nid={item.nid} />
+                <Issue
+                  title={item.title}
+                  date={item.created}
+                  nid={item.nid}
+                  type={"issue"}
+                />
               );
             }}
             ListFooterComponent={renderFooter}
