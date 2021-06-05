@@ -3,9 +3,8 @@ import Settings from "../screens/Settings";
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../screens/Home";
 import SingleIssue from "../screens/SingleIssue";
-import { BlurView } from "expo-blur";
-import StyleSheet from "react-native";
 import colors from "../shared/colors";
+import Article from "../screens/Article";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -54,6 +53,13 @@ const HomeStack = () => {
           },
           headerTintColor: "#fff",
         })}
+      />
+      <Screen
+        name="singleArticle"
+        component={Article}
+        options={{
+          headerShown: false,
+        }}
       />
     </Navigator>
   );

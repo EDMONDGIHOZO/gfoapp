@@ -214,6 +214,7 @@ const GlobalStyles = StyleSheet.create({
   },
 
   cardFooter: {
+    marginVertical: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

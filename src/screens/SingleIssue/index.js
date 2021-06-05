@@ -64,6 +64,7 @@ const SingleIssue = ({ route }) => {
           renderItem={({ item }) => (
             <ArticleCard
               title={item.title}
+              nid={item.nid}
               number={item.article_number.field_article_number_value}
               author={item.article_author.field_article_author_value}
               abstract={item.article_abstract.field_article_abstract_value}

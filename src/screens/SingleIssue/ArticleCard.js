@@ -1,11 +1,17 @@
 import React from "react";
-import { View, Text, useWindowDimensions } from "react-native";
+import {
+  View,
+  Text,
+  useWindowDimensions,
+  TouchableOpacity,
+} from "react-native";
 import GlobalStyles from "../../shared/GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 import colors from "../../shared/colors";
 import HTML from "react-native-render-html";
+import BIcon from "../../components/tools/buttonWithIcon";
 
-const ArticleCard = ({ title, number, author, abstract }) => {
+const ArticleCard = ({ title, number, author, abstract, nid }) => {
   const navigation = useNavigation();
   const contentWidth = useWindowDimensions().width;
 
@@ -20,7 +26,13 @@ const ArticleCard = ({ title, number, author, abstract }) => {
           <Text style={{ fontFamily: "nunito-bold", color: colors.accent }}>
             {number}
           </Text>
-          <Text style={{ fontFamily: "nunito-light", maxWidth: "70%" }}>
+          <Text
+            style={{
+              fontFamily: "nunito-bold",
+              maxWidth: "70%",
+              color: colors.accent,
+            }}
+          >
             {author}
           </Text>
         </View>
@@ -34,6 +46,19 @@ const ArticleCard = ({ title, number, author, abstract }) => {
           source={{ html: abstract }}
           contentWidth={contentWidth}
         />
+      </View>
+      <View style={GlobalStyles.cardFooter}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("singleArticle", { ArticleId: nid })
+          }
+        >
+          <BIcon
+            title={"read more"}
+            color={colors.secondary}
+            iconName={"read-more"}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
