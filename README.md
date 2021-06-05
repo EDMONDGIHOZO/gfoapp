@@ -6,6 +6,10 @@ react native Aidspan Multi-platform app
   - home
   - all issues
   - booksmarks
+  - single article
+  - single issue
+  - popular articles
+  - tag view
   
 ### Features: 
   - save an article
@@ -13,4 +17,4 @@ react native Aidspan Multi-platform app
   - push notifications
   - adjust font size while reading
   - dark and light mode
-  - share a paragraph
+  - share an article
