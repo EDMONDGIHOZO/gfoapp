@@ -38,7 +38,8 @@ const IssueStack = () => {
         name="singleArticle"
         component={Article}
         options={{
-          headerShown: false,
+          headerTitle: false,
+          headerBackTitle: false,
         }}
       />
     </Navigator>

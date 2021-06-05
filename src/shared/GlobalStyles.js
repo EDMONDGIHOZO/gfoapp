@@ -313,6 +313,14 @@ const GlobalStyles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
   },
+
+  fab: {
+    position: "relative",
+    right: 0,
+    bottom: 0,
+    zIndex: 0,
+    backgroundColor: colors.main,
+  },
 });
 
 export default GlobalStyles;

@@ -11,23 +11,35 @@ import colors from "../../shared/colors";
 import GlobalStyles from "../../shared/GlobalStyles";
 import Axios from "axios";
 import HTML from "react-native-render-html";
-import Header from "../../components/Header";
+import Styles from "./styles";
+import { FAB } from "react-native-paper";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const Article = ({ route }) => {
   const contentWidth = useWindowDimensions().width;
   const { ArticleId } = route.params;
   const [isFetching, setFetching] = useState(true);
   const [article, setArticle] = useState({});
+  const [FontSize, setFontSize] = useState(16);
 
   const getArticle = async () => {
     await Axios.get(`Articles/${ArticleId}`).then((response) => {
       const data = response.data.article;
       if (data !== null) {
         setArticle(data);
-        console.log(data);
         setFetching(false);
       }
     });
+  };
+
+  const fonting = () => {
+    let maxFont = 30;
+
+    if (FontSize < maxFont) {
+      setFontSize(FontSize + 3);
+    } else {
+      setFontSize(FontSize - 10);
+    }
   };
 
   useEffect(() => {
@@ -38,87 +50,56 @@ const Article = ({ route }) => {
   if (!isFetching) {
     return (
       <>
-        <Header
-          title={
-            article.article_number.field_article_number_value !== null
-              ? `${article.article_number.field_article_number_value} - ${article.article_types[0].name}`
-              : "Number/Numero"
-          }
-          hideIcon={true}
-          isArticle={true}
-        />
-        <ScrollView style={GlobalStyles.container}>
+        <ScrollView
+          style={GlobalStyles.container}
+          zoomScale={true}
+          maximumZoomScale={1.5}
+        >
           <View style={GlobalStyles.contents}>
-            <View
-              style={{
-                backgroundColor: "#fff",
-                padding: 20,
-                borderRadius: 10,
-                elevation: 1,
-              }}
-            >
-              <Text
-                style={{
-                  fontFamily: "nunito-extra-bold",
-                  fontSize: 25,
-                  textTransform: "capitalize",
-                  marginBottom: 20,
-                  color: colors.accent,
-                }}
-              >
+            <View style={Styles.titleContainer}>
+              <Text style={Styles.firsttitle} selectable>
                 {article.title}
               </Text>
-              <Text
-                style={{
-                  fontFamily: "nunito-light",
-                  fontSize: 20,
-                  textTransform: "capitalize",
-                  color: colors.accent,
-                  marginBottom: 20,
-                }}
-              >
+              <Text style={Styles.secondtitle}>
                 {article.article_second_title
                   ? article.article_second_title
                       .field_article_secondary_title_value
                   : "-----"}
               </Text>
               <View style={GlobalStyles.cardTitleContainer}>
-                <Text
-                  style={{
-                    fontFamily: "nunito-bold",
-                    fontSize: 14,
-                    textTransform: "capitalize",
-                    color: colors.main,
-                    maxWidth: "50%",
-                  }}
-                >
+                <Text style={Styles.smalltext}>
                   {article.article_author.field_article_author_value}
                 </Text>
-                <Text
-                  style={{
-                    fontFamily: "nunito-bold",
-                    fontSize: 14,
-                    textTransform: "capitalize",
-                    color: colors.main,
-                    maxWidth: "50%",
-                  }}
-                >
+                <Text style={Styles.smalltext}>
                   {DateFormat(article.changed)}
                 </Text>
               </View>
             </View>
 
+            {/* little detailas container */}
             <View
               style={{
-                backgroundColor: colors.main,
-                borderLeftColor: colors.secondary,
-                borderLeftWidth: 4,
-                padding: 20,
-                borderRadius: 2,
-                elevation: 1,
-                marginVertical: 10,
+                backgroundColor: colors.secondary,
+                height: 50,
+                marginVertical: 20,
+                borderRadius: 6,
+                justifyContent: "space-between",
+                alignItems: "center",
+                paddingHorizontal: 20,
+                flexDirection: "row",
               }}
             >
+              <Text style={{ color: "#fff", fontFamily: "nunito-bold" }}>
+                {article.article_number.field_article_number_value}
+              </Text>
+              <Text style={{ color: "#fff", fontFamily: "nunito-bold" }}>
+                {article.article_types[0].name}
+              </Text>
+
+              <MaterialIcons name="share" size={20} color="#fff" />
+            </View>
+
+            <View style={Styles.abstractcontainer}>
               <HTML
                 tagsStyles={{
                   p: {
@@ -133,23 +114,19 @@ const Article = ({ route }) => {
                 contentWidth={contentWidth}
               />
             </View>
-            <View
-              style={{
-                flex: 1,
-                padding: 10,
-                borderTopColor: colors.main,
-                borderTopWidth: 3,
-                marginVertical: 20,
-                borderRadius: 8,
-                backgroundColor: "#fff",
-              }}
-            >
+            <View style={Styles.contentcontainer}>
               <HTML
+                ignoredStyles={["fontFamily", "font-family"]}
+                containerStyle={{
+                  backgroundColor: "#fff",
+                  padding: 10,
+                  margin: 0,
+                }}
                 tagsStyles={{
                   p: {
                     fontFamily: "nunito-regular",
                     color: "#000",
-                    fontSize: 16,
+                    fontSize: FontSize,
                   },
                   i: {
                     fontFamily: "nunito-regular",
@@ -190,7 +167,7 @@ const Article = ({ route }) => {
                 baseFontStyle={{
                   fontFamily: "nunito-regular",
                   lineHeight: 25,
-                  fontSize: 15,
+                  fontSize: FontSize,
                 }}
                 source={{
                   html: article.article_content.field_article_content_value,

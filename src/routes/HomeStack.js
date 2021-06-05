@@ -58,7 +58,11 @@ const HomeStack = () => {
         name="singleArticle"
         component={Article}
         options={{
-          headerShown: false,
+          headerRightContainerStyle: {
+            marginRight: 20,
+          },
+          headerTitle: false,
+          headerBackTitle: false,
         }}
       />
     </Navigator>
