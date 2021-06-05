@@ -19,19 +19,24 @@ import { shareArticle } from "../../shared/ShareArticle";
 
 const Article = ({ route }) => {
   const contentWidth = useWindowDimensions().width;
-  const { ArticleId } = route.params;
+  const { node } = route.params;
   const [isFetching, setFetching] = useState(true);
   const [article, setArticle] = useState({});
   const [FontSize, setFontSize] = useState(16);
 
   const getArticle = async () => {
-    await Axios.get(`Articles/${ArticleId}`).then((response) => {
+    await Axios.get(`Articles/${node}`).then((response) => {
       const data = response.data.article;
       if (data !== null) {
         setArticle(data);
         setFetching(false);
       }
     });
+  };
+
+  const bookmark = async () => {
+    Bookmarker(title, date, nid, type);
+    setVisibleSnack(!visibleSnack);
   };
 
   const fonting = () => {
@@ -99,7 +104,7 @@ const Article = ({ route }) => {
               </Text>
 
               <TouchableOpacity
-                onPress={() => shareArticle(ArticleId, article.title)}
+                onPress={() => shareArticle(node, article.title)}
               >
                 <MaterialIcons name="share" size={20} color="#fff" />
               </TouchableOpacity>

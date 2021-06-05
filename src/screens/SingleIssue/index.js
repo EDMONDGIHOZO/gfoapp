@@ -10,12 +10,12 @@ import ArticleCard from "./ArticleCard";
 import _ from "lodash";
 
 const SingleIssue = ({ route }) => {
-  const { issueId, issueTitle } = route.params;
+  const { node, title } = route.params;
   const [isFetching, setFetching] = useState(true);
   const [issue, setIssue] = useState([]);
 
   const getArticles = async () => {
-    await Axios.get(`/all-issues/${issueId}`).then((response) => {
+    await Axios.get(`/all-issues/${node}`).then((response) => {
       const data = response.data.issue_data;
       if (data !== null) {
         setIssue(data);
@@ -27,7 +27,7 @@ const SingleIssue = ({ route }) => {
   useEffect(() => {
     getArticles();
     return () => {};
-  }, [issueId]);
+  }, [node]);
 
   return (
     <SkeletonContent
@@ -65,6 +65,7 @@ const SingleIssue = ({ route }) => {
             <ArticleCard
               title={item.title}
               nid={item.nid}
+              date={item.changed}
               number={item.article_number.field_article_number_value}
               author={item.article_author.field_article_author_value}
               abstract={item.article_abstract.field_article_abstract_value}

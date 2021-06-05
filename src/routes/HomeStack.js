@@ -42,7 +42,7 @@ const HomeStack = () => {
         name="singleIssue"
         component={SingleIssue}
         options={({ route }) => ({
-          title: route.params.issueTitle,
+          title: route.params.title,
           headerStyle: {
             backgroundColor: colors.main,
           },

@@ -9,7 +9,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 const IssueStack = () => {
   return (
-    <Navigator headerMode={"screen"}>
+    <Navigator headerMode={"screen"} initialRouteName={"Issues"}>
       <Screen
         name="Issues"
         component={Issues}
@@ -22,7 +22,7 @@ const IssueStack = () => {
         name="singleIssue"
         component={SingleIssue}
         options={({ route }) => ({
-          title: route.params.issueTitle,
+          title: route.params.title,
           headerStyle: {
             backgroundColor: colors.main,
           },

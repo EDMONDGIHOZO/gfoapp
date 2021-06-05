@@ -43,8 +43,8 @@ const Card = ({ title, date, nid, type, updateData }) => {
             navigation.navigate(
               type === "issue" ? "singleIssue" : "singleArticle",
               {
-                issueId: nid,
-                issueTitle: title,
+                node: nid,
+                title: title,
               }
             )
           }

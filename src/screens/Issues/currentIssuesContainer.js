@@ -56,7 +56,7 @@ const CurrentIssuesContainer = ({ navigation }) => {
             <CurrentIssue
               key={index}
               title={"current Issue"}
-              issueTitle={issue.title}
+              title={issue.title}
               date={issue.changed}
               nid={issue.nid}
               articlesNumber={issue.__meta__.related_articles_count}

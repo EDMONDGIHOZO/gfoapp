@@ -7,7 +7,7 @@ import "moment/locale/fr";
 import { useNavigation, NavigationContainer } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const CurrentIssue = ({ issueTitle, date, articlesNumber, nid }) => {
+const CurrentIssue = ({ title, date, articlesNumber, nid }) => {
   const issueDate = moment.unix(date).format("MMMM D, YYYY");
   const navigation = useNavigation();
   return (
@@ -25,12 +25,12 @@ const CurrentIssue = ({ issueTitle, date, articlesNumber, nid }) => {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate("singleIssue", {
-            issueId: nid,
-            issueTitle: issueTitle,
+            node: nid,
+            title: title,
           })
         }
       >
-        <Text style={Styles.issueNumber}>{issueTitle}</Text>
+        <Text style={Styles.issueNumber}>{title}</Text>
       </TouchableOpacity>
       <View style={Styles.infoContainer}>
         <Text style={Styles.infoText}>{issueDate}</Text>

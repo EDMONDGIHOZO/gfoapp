@@ -7,7 +7,7 @@ import Styles from "./styles";
 import i18n from "../../i18n";
 import moment from "moment";
 import "moment/locale/fr";
-import db from "../../http/db";
+import { Bookmarker } from "../../shared/Bookmarker";
 import { shareArticle } from "../../shared/ShareArticle";
 let lang = i18n.locale;
 moment.locale(lang);
@@ -18,28 +18,13 @@ import { Button, Snackbar } from "react-native-paper";
 const Issue = ({ title, date, nid, type }) => {
   const [visibleSnack, setVisibleSnack] = React.useState(false);
 
-  const onToggleSnackBar = () => setVisibleSnack(!visibleSnack);
-
   const onDismissSnackBar = () => setVisibleSnack(false);
 
   const navigation = useNavigation();
   // save the bookmark to db
   const setData = async () => {
-    if (title.length == 0 || date.length == 0 || nid.length == 0) {
-      Alert("Warning!", "we got nothing to save");
-    } else {
-      try {
-        await db.transaction(async (tx) => {
-          await tx.executeSql(
-            "INSERT INTO issuebookmarks (id,title, nid, type, date) VALUES (?,?, ?,?,?)",
-            [nid, title, nid, type, date]
-          );
-        });
-        onToggleSnackBar();
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    Bookmarker(title, date, nid, type);
+    setVisibleSnack(!visibleSnack);
   };
 
   return (
@@ -62,8 +47,8 @@ const Issue = ({ title, date, nid, type }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("singleIssue", {
-              issueId: nid,
-              issueTitle: title,
+              node: nid,
+              title: title,
             })
           }
         >
