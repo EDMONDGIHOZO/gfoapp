@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   useWindowDimensions,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { DateFormat } from "../../shared/DateFormat";
 import colors from "../../shared/colors";
@@ -14,6 +15,7 @@ import HTML from "react-native-render-html";
 import Styles from "./styles";
 import { FAB } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
+import { shareArticle } from "../../shared/ShareArticle";
 
 const Article = ({ route }) => {
   const contentWidth = useWindowDimensions().width;
@@ -96,7 +98,11 @@ const Article = ({ route }) => {
                 {article.article_types[0].name}
               </Text>
 
-              <MaterialIcons name="share" size={20} color="#fff" />
+              <TouchableOpacity
+                onPress={() => shareArticle(ArticleId, article.title)}
+              >
+                <MaterialIcons name="share" size={20} color="#fff" />
+              </TouchableOpacity>
             </View>
 
             <View style={Styles.abstractcontainer}>

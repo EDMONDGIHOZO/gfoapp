@@ -8,16 +8,23 @@ import i18n from "../../i18n";
 import moment from "moment";
 import "moment/locale/fr";
 import db from "../../http/db";
+import { shareArticle } from "../../shared/ShareArticle";
 let lang = i18n.locale;
 moment.locale(lang);
 
 import { DateFormat } from "../../shared/DateFormat";
+import { Button, Snackbar } from "react-native-paper";
 
 const Issue = ({ title, date, nid, type }) => {
+  const [visibleSnack, setVisibleSnack] = React.useState(false);
+
+  const onToggleSnackBar = () => setVisibleSnack(!visibleSnack);
+
+  const onDismissSnackBar = () => setVisibleSnack(false);
+
   const navigation = useNavigation();
   // save the bookmark to db
   const setData = async () => {
-    console.log("starting to save");
     if (title.length == 0 || date.length == 0 || nid.length == 0) {
       Alert("Warning!", "we got nothing to save");
     } else {
@@ -28,29 +35,10 @@ const Issue = ({ title, date, nid, type }) => {
             [nid, title, nid, type, date]
           );
         });
-        alert("bookmark saved!");
+        onToggleSnackBar();
       } catch (error) {
         console.log(error);
       }
-    }
-  };
-
-  const onShare = async () => {
-    try {
-      const result = await Share.share({
-        message: ` title: ${title} -  link: https://aidspan.org/issues/${nid} - download the app : https://playstore.com/aidspanapp`,
-      });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      alert(error.message);
     }
   };
 
@@ -94,15 +82,17 @@ const Issue = ({ title, date, nid, type }) => {
           <MaterialIcons name="bookmark" size={24} color="black" />
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <MaterialIcons
-            name="share"
-            onPress={onShare}
-            size={24}
-            color="black"
-          />
+        <TouchableOpacity onPress={() => shareArticle(nid, title)}>
+          <MaterialIcons name="share" size={24} color="black" />
         </TouchableOpacity>
       </View>
+      <Snackbar
+        visible={visibleSnack}
+        onDismiss={onDismissSnackBar}
+        duration={1000}
+      >
+        Saved
+      </Snackbar>
     </View>
   );
 };
