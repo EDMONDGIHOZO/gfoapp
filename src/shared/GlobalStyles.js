@@ -240,6 +240,7 @@ const GlobalStyles = StyleSheet.create({
     fontSize: 24,
     textTransform: "capitalize",
     color: "#5D6060",
+    textTransform: "uppercase",
   },
 
   articleRow: {
@@ -266,6 +267,8 @@ const GlobalStyles = StyleSheet.create({
     color: colors.main,
     marginBottom: 20,
     marginTop: 20,
+    marginLeft: 20,
+    color: colors.secondary,
   },
 
   datebox: {

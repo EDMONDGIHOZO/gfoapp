@@ -7,4 +7,5 @@ export default {
   navSearch: "Search",
   currentIssueTitle: "Current  GFO Issues",
   filterIssueType: "Filter Issues Type",
+  popularTitle: "Popular Articles",
 };

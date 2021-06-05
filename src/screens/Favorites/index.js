@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   ScrollView,
   RefreshControl,
+  TextInput,
 } from "react-native";
 import GlobalStyles from "../../shared/GlobalStyles";
 import Header from "../../components/Header";
@@ -43,7 +44,23 @@ const Favorites = () => {
 
   return (
     <SafeAreaView style={GlobalStyles.container}>
-      <Header title={"BOOKMARKS" + " " + bnumber} />
+      <Header title={"Bookmarks"} />
+      <View
+        style={{
+          height: 60,
+          marginHorizontal: 20,
+          padding: 10,
+          borderRadius: 7,
+          backgroundColor: colors.main,
+          justifyContent: "center",
+        }}
+      >
+        <Text
+          style={{ fontSize: 20, fontFamily: "nunito-bold", color: "#fff" }}
+        >
+          Total : {bnumber}
+        </Text>
+      </View>
       <ScrollView
         style={GlobalStyles.contents}
         refreshControl={
