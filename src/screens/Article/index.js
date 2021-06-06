@@ -75,7 +75,9 @@ const Article = ({ route }) => {
               </Text>
               <View style={GlobalStyles.cardTitleContainer}>
                 <Text style={Styles.smalltext}>
-                  {article.article_author.field_article_author_value}
+                  {article.article_author !== null
+                    ? article.article_author.field_article_author_value
+                    : "aidspan"}
                 </Text>
                 <Text style={Styles.smalltext}>
                   {DateFormat(article.changed)}
@@ -97,7 +99,9 @@ const Article = ({ route }) => {
               }}
             >
               <Text style={{ color: "#fff", fontFamily: "nunito-bold" }}>
-                {article.article_number.field_article_number_value}
+                {article.article_number !== null
+                  ? article.article_number.field_article_number_value
+                  : "number"}
               </Text>
               <Text style={{ color: "#fff", fontFamily: "nunito-bold" }}>
                 {article.article_types[0].name}
@@ -120,7 +124,12 @@ const Article = ({ route }) => {
                   },
                 }}
                 source={{
-                  html: article.article_abstract.field_article_abstract_value,
+                  html:
+                    article.article_abstract !== null ? (
+                      article.article_abstract.field_article_abstract_value
+                    ) : (
+                      <p> no absctract </p>
+                    ),
                 }}
                 contentWidth={contentWidth}
               />
@@ -185,6 +194,36 @@ const Article = ({ route }) => {
                 }}
                 contentWidth={contentWidth}
               />
+            </View>
+            <View
+              style={{
+                backgroundColor: "#fff",
+                flex: 1,
+                marginTop: 10,
+                padding: 10,
+                borderRadius: 5,
+              }}
+            >
+              <Text style={{ color: colors.accent, fontFamily: "nunito-bold" }}>
+                Comments ({article.__meta__.comments_count})
+              </Text>
+              <View style={{ marginVertical: 20 }}>
+                {article.__meta__.comments_count > 0 ? (
+                  <View>
+                    <Text>--</Text>
+                  </View>
+                ) : (
+                  <Text
+                    style={{
+                      fontFamily: "nunito-light",
+                      textAlign: "center",
+                      color: colors.accent,
+                    }}
+                  >
+                    no comments yet
+                  </Text>
+                )}
+              </View>
             </View>
           </View>
         </ScrollView>

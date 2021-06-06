@@ -18,6 +18,7 @@ const BottomNav = () => {
       tabBarOptions={{
         showLabel: false,
         style: GlobalStyles.bnavigation,
+        keyboardHidesTabBar: true,
       }}
     >
       <Screen

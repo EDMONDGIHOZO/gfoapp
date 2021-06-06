@@ -11,6 +11,7 @@ export async function Bookmarker(title, date, nid, type) {
           [nid, title, nid, type, date]
         );
       });
+      alert("saved it");
     } catch (error) {
       console.log(error);
     }

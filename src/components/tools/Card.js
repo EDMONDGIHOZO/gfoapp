@@ -8,8 +8,10 @@ import { DateFormat } from "../../shared/DateFormat";
 import db from "../../http/db";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+import { UnderScoreRemover } from "../../shared/TextHelpers";
+import { Bookmarker } from "../../shared/Bookmarker";
 
-const Card = ({ title, date, nid, type, updateData }) => {
+const Card = ({ title, date, nid, type, updateData, fromSearch, writer }) => {
   const navigation = useNavigation();
 
   const removebookmark = () => {
@@ -26,17 +28,24 @@ const Card = ({ title, date, nid, type, updateData }) => {
   return (
     <View style={GlobalStyles.card}>
       <View style={GlobalStyles.cardTitleContainer}>
-        <Text style={GlobalStyles.cardtitle}>{type}</Text>
+        <Text style={GlobalStyles.cardtitle}>{UnderScoreRemover(type)}</Text>
 
-        <TouchableOpacity onPress={() => removebookmark()}>
-          <MaterialIcons
-            name="delete-forever"
-            size={24}
-            color={colors.secondary}
-          />
-        </TouchableOpacity>
+        {!fromSearch ? (
+          <TouchableOpacity onPress={() => removebookmark()}>
+            <MaterialIcons
+              name="delete-forever"
+              size={24}
+              color={colors.secondary}
+            />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => Bookmarker(title, date, nid, type)}>
+            <MaterialIcons name="bookmark" size={24} color={colors.main} />
+          </TouchableOpacity>
+        )}
       </View>
       <Text style={GlobalStyles.cardText}>{title}</Text>
+      <Text style={GlobalStyles.authorName}>{writer}</Text>
       <View style={GlobalStyles.cardFooter}>
         <TouchableOpacity
           onPress={() =>

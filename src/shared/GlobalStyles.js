@@ -107,14 +107,15 @@ const GlobalStyles = StyleSheet.create({
     width: width,
   },
   input: {
-    height: width / 8,
+    height: 50,
     borderWidth: 1,
-    borderTopLeftRadius: 30,
-    borderBottomLeftRadius: 30,
+    borderRadius: 5,
     padding: 10,
-    borderColor: colors.secondary,
+    borderColor: "#E3E3E3",
     fontFamily: "nunito-regular",
-    backgroundColor: "#fff",
+    fontSize: 16,
+    backgroundColor: "#FAFAFA",
+    marginVertical: 20,
   },
   button: {
     padding: 15,
@@ -319,6 +320,11 @@ const GlobalStyles = StyleSheet.create({
     backgroundColor: "red",
     borderRadius: 8,
     padding: 10,
+  },
+
+  authorName: {
+    fontFamily: "nunito-light",
+    color: colors.accent,
   },
 
   fab: {
