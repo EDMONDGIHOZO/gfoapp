@@ -16,7 +16,6 @@ const Home = () => {
         <View style={GlobalStyles.contents}>
           <CurrentIssuesContainer />
           <Featured />
-          <Tags />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -8,3 +8,7 @@ export function DateFormat(value) {
   return moment.unix(value).format("MMMM D, YYYY");
   //   return "aye mama";
 }
+export function DateFormatShort(value) {
+  return moment.unix(value).format("MMM Do YY");
+  //   return "aye mama";
+}

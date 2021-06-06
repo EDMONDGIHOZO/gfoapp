@@ -139,19 +139,19 @@ const GlobalStyles = StyleSheet.create({
   // ----------------- Featured articles ----------------- //
   featured: {
     borderWidth: 0.3,
-    borderColor: colors.accent,
-
+    borderColor: colors.secondary,
+    minHeight: 400,
     padding: SPACING / 4,
     marginBottom: SPACING,
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
-    borderRadius: 15,
+    backgroundColor: "#fff",
+    borderRadius: 12,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 3,
     },
-    shadowOpacity: 0.3,
-    shadowRadius: 20,
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
     marginTop: SPACING,
   },
   card: {
@@ -251,9 +251,12 @@ const GlobalStyles = StyleSheet.create({
   },
 
   titleContainer: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "space-between",
+    // alignItems: "center",
     width: width / 2 + 60,
+    borderBottomColor: colors.accent,
+    borderBottomWidth: 0.3,
+    paddingBottom: 10,
   },
 
   articleTitle: {
@@ -280,13 +283,14 @@ const GlobalStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 2,
+    elevation: 2,
   },
 
   featuredDate: {
     fontFamily: "nunito-bold",
     textAlign: "center",
-    textTransform: "uppercase",
-    color: colors.main,
+    textTransform: "capitalize",
+    color: colors.accent,
   },
 
   // ------------ issues page --------------------- //

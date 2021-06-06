@@ -7,5 +7,6 @@ export default {
   navSearch: "rechercher",
   currentIssueTitle: "Éditions actuels de OFM",
   filterIssueType: "Filtrer le type d'éditions",
-  popularTitle: "Articles Populaires",
+  popularTitle: "Articles Populaires (OFM)",
+  hits: "accès",
 };
