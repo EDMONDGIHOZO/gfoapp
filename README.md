@@ -18,3 +18,5 @@ react native Aidspan Multi-platform app
   - adjust font size while reading
   - dark and light mode
   - share an article
+  - multiple languages support
+  
