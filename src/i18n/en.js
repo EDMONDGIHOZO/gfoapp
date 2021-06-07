@@ -1,5 +1,5 @@
 export default {
-  homeTitle: "welcome",
+  homeTitle: "Welcome",
   issuesTitle: "All Issues",
   navHome: "Home",
   navIssues: "issues",

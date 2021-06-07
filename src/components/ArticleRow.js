@@ -18,10 +18,9 @@ const ArticleRow = ({ title, date, hits }) => {
             color: colors.secondary,
             fontSize: 12,
             fontFamily: "nunito-regular",
-            marginVertical: 10,
           }}
         >
-          {hits} {i18n.t("hits")}
+          {/* {hits} {i18n.t("hits")} */}
         </Text>
       </View>
     </View>
