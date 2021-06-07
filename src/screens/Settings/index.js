@@ -28,18 +28,18 @@ const Settings = () => {
         <View style={{ margin: 10 }}>
           <Useful
             title={"About"}
-            iconName={"information"}
-            link="https://google.com"
+            iconName={"info"}
+            link="https://aidspan.org/en/c/about-us"
           />
           <Useful
             title={"Subscribe"}
-            iconName={"email-newsletter"}
-            link="https://google.com"
+            iconName={"email"}
+            link="https://aidspan.org/en/c/subscribe"
           />
           <Useful
-            title={"Feedback"}
-            iconName={"email-newsletter"}
-            link="https://google.com"
+            title={"Visit web"}
+            iconName={"feedback"}
+            link="https://aidspan.org"
           />
         </View>
       </ScrollView>

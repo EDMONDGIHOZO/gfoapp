@@ -58,7 +58,7 @@ const Search = () => {
             search
           </Button>
           <Button
-            icon="text-search"
+            icon="restart"
             mode="contained"
             color={colors.secondary}
             labelStyle={{ fontFamily: "nunito-bold", color: "#fff" }}
@@ -71,6 +71,16 @@ const Search = () => {
 
         {visible ? (
           <View style={{ paddingTop: 10 }}>
+            <Text
+              style={{
+                fontFamily: "nunito-light",
+                fontSize: 14,
+                color: colors.accent,
+                textAlign: "left",
+              }}
+            >
+              {searchQuery}
+            </Text>
             <Text
               style={{
                 fontFamily: "nunito-extra-bold",

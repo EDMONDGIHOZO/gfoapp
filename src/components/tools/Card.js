@@ -50,7 +50,7 @@ const Card = ({ title, date, nid, type, updateData, fromSearch, writer }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate(
-              type === "issue" ? "singleIssue" : "singleArticle",
+              type === "gfo_issue" ? "singleIssue" : "singleArticle",
               {
                 node: nid,
                 title: title,

@@ -16,6 +16,7 @@ import Styles from "./styles";
 import { FAB } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import { shareArticle } from "../../shared/ShareArticle";
+import { Bookmarker } from "../../shared/Bookmarker";
 
 const Article = ({ route }) => {
   const contentWidth = useWindowDimensions().width;
@@ -35,13 +36,19 @@ const Article = ({ route }) => {
   };
 
   const bookmark = async () => {
-    Bookmarker(title, date, nid, type);
-    setVisibleSnack(!visibleSnack);
+    Bookmarker(article.title, article.changed, article.nid, "article");
   };
 
-  const fonting = () => {
+  const fontingMinus = () => {
+    let minFont = 12;
+    if (FontSize > minFont) {
+      setFontSize(FontSize - 3);
+    } else {
+      setFontSize(FontSize + 3);
+    }
+  };
+  const fontingPlus = () => {
     let maxFont = 30;
-
     if (FontSize < maxFont) {
       setFontSize(FontSize + 3);
     } else {
@@ -104,13 +111,13 @@ const Article = ({ route }) => {
                   : "number"}
               </Text>
               <Text style={{ color: "#fff", fontFamily: "nunito-bold" }}>
-                {article.article_types[0].name}
+                {article.article_types !== null
+                  ? article.article_types[0].name
+                  : "no type found"}
               </Text>
 
-              <TouchableOpacity
-                onPress={() => shareArticle(node, article.title)}
-              >
-                <MaterialIcons name="share" size={20} color="#fff" />
+              <TouchableOpacity onPress={() => bookmark()}>
+                <MaterialIcons name="bookmark" size={20} color="#fff" />
               </TouchableOpacity>
             </View>
 
@@ -147,6 +154,7 @@ const Article = ({ route }) => {
                     fontFamily: "nunito-regular",
                     color: "#000",
                     fontSize: FontSize,
+                    lineHeight: 30,
                   },
                   i: {
                     fontFamily: "nunito-regular",
@@ -195,38 +203,22 @@ const Article = ({ route }) => {
                 contentWidth={contentWidth}
               />
             </View>
-            <View
-              style={{
-                backgroundColor: "#fff",
-                flex: 1,
-                marginTop: 10,
-                padding: 10,
-                borderRadius: 5,
-              }}
-            >
-              <Text style={{ color: colors.accent, fontFamily: "nunito-bold" }}>
-                Comments ({article.__meta__.comments_count})
-              </Text>
-              <View style={{ marginVertical: 20 }}>
-                {article.__meta__.comments_count > 0 ? (
-                  <View>
-                    <Text>--</Text>
-                  </View>
-                ) : (
-                  <Text
-                    style={{
-                      fontFamily: "nunito-light",
-                      textAlign: "center",
-                      color: colors.accent,
-                    }}
-                  >
-                    no comments yet
-                  </Text>
-                )}
-              </View>
-            </View>
           </View>
         </ScrollView>
+        <FAB
+          style={GlobalStyles.fab2}
+          small
+          icon="share"
+          color={"white"}
+          onPress={() => shareArticle(node, article.title)}
+        />
+        <FAB
+          style={GlobalStyles.fab}
+          small
+          icon="format-font-size-increase"
+          color={"white"}
+          onPress={() => fontingPlus()}
+        />
       </>
     );
   } else {

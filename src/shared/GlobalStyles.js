@@ -328,11 +328,18 @@ const GlobalStyles = StyleSheet.create({
   },
 
   fab: {
-    position: "relative",
+    position: "absolute",
+    margin: 10,
     right: 0,
-    bottom: 0,
-    zIndex: 0,
+    top: height / 1.5,
     backgroundColor: colors.main,
+  },
+  fab2: {
+    position: "absolute",
+    margin: 10,
+    right: 0,
+    top: height / 1.7,
+    backgroundColor: colors.secondary,
   },
 });
 

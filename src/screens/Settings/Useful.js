@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { View, Text, TouchableOpacity, Linking, Alert } from "react-native";
 import GlobalStyles from "../../shared/GlobalStyles";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const Useful = ({ title, link, iconName }) => {
   const openLink = useCallback(async () => {
@@ -21,7 +21,7 @@ const Useful = ({ title, link, iconName }) => {
     <TouchableOpacity onPress={() => openLink()}>
       <View style={GlobalStyles.smallCard}>
         <Text style={GlobalStyles.title}>{title}</Text>
-        <MaterialCommunityIcons name={iconName} size={24} color="grey" />
+        <MaterialIcons name={iconName} size={24} color="grey" />
       </View>
     </TouchableOpacity>
   );
