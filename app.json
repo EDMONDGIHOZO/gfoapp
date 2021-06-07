@@ -16,9 +16,12 @@
     "assetBundlePatterns": ["**/*"],
 
     "ios": {
+      "bundleIdentifier": "org.aidspan.gfoapp",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "package": "org.aidspan.gfoapp",
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#00adef"
