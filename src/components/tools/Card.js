@@ -50,7 +50,11 @@ const Card = ({ title, date, nid, type, updateData, fromSearch, writer }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate(
-              type === "gfo_issue" ? "singleIssue" : "singleArticle",
+              type === "gfo_issue"
+                ? "singleIssue"
+                : type === "gfo_article"
+                ? "singleArticle"
+                : "home",
               {
                 node: nid,
                 title: title,
@@ -67,6 +71,7 @@ const Card = ({ title, date, nid, type, updateData, fromSearch, writer }) => {
         <Text
           style={{
             fontSize: 14,
+            textTransform: "capitalize",
             color: colors.main,
             fontFamily: "nunito-bold",
           }}

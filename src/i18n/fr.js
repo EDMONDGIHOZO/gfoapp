@@ -9,4 +9,9 @@ export default {
   filterIssueType: "Filtrer le type d'éditions",
   popularTitle: "Articles Populaires (OFM)",
   hits: "accès",
+  read: "Lisez",
+  readLater: "Lire plus tard",
+  done: "Succès",
+  issue: "Éditions",
+  useful: "informations utiles",
 };

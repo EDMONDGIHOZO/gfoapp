@@ -9,4 +9,9 @@ export default {
   filterIssueType: "Filter Issues Type",
   popularTitle: "Popular Articles (GFO)",
   hits: "Hits",
+  read: "Read Now",
+  readLater: "Read Later",
+  done: "Done",
+  issue: "Issue",
+  useful: "Useful Info",
 };

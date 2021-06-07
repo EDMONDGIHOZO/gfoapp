@@ -41,6 +41,13 @@ const GlobalStyles = StyleSheet.create({
     marginBottom: height / 9,
   },
 
+  articleContainer: {
+    padding: 10,
+    flex: 1,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+  },
+
   currentissueContent: {
     backgroundColor: "red",
     justifyContent: "center",
@@ -331,7 +338,7 @@ const GlobalStyles = StyleSheet.create({
     position: "absolute",
     margin: 10,
     right: 0,
-    top: height / 1.5,
+    top: height / 2,
     backgroundColor: colors.main,
   },
   fab2: {
@@ -340,6 +347,14 @@ const GlobalStyles = StyleSheet.create({
     right: 0,
     top: height / 1.7,
     backgroundColor: colors.secondary,
+  },
+  fab3: {
+    position: "absolute",
+    margin: 10,
+    right: 0,
+
+    top: height / 1.5,
+    backgroundColor: colors.accent,
   },
 });
 

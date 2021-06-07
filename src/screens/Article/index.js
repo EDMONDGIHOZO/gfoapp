@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -17,13 +17,18 @@ import { FAB } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import { shareArticle } from "../../shared/ShareArticle";
 import { Bookmarker } from "../../shared/Bookmarker";
+import ArticleRow from "../../components/ArticleRow";
+import i18n from "../../i18n";
+import { CommonActions } from "@react-navigation/native";
 
-const Article = ({ route }) => {
+const Article = ({ route, navigation }) => {
   const contentWidth = useWindowDimensions().width;
   const { node } = route.params;
   const [isFetching, setFetching] = useState(true);
   const [article, setArticle] = useState({});
   const [FontSize, setFontSize] = useState(16);
+
+  const scrollRef = useRef();
 
   const getArticle = async () => {
     await Axios.get(`Articles/${node}`).then((response) => {
@@ -36,17 +41,9 @@ const Article = ({ route }) => {
   };
 
   const bookmark = async () => {
-    Bookmarker(article.title, article.changed, article.nid, "article");
+    Bookmarker(article.title, article.changed, article.nid, "gfo_article");
   };
 
-  const fontingMinus = () => {
-    let minFont = 12;
-    if (FontSize > minFont) {
-      setFontSize(FontSize - 3);
-    } else {
-      setFontSize(FontSize + 3);
-    }
-  };
   const fontingPlus = () => {
     let maxFont = 30;
     if (FontSize < maxFont) {
@@ -68,8 +65,9 @@ const Article = ({ route }) => {
           style={GlobalStyles.container}
           zoomScale={true}
           maximumZoomScale={1.5}
+          ref={scrollRef}
         >
-          <View style={GlobalStyles.contents}>
+          <View style={GlobalStyles.articleContainer}>
             <View style={Styles.titleContainer}>
               <Text style={Styles.firsttitle} selectable>
                 {article.title}
@@ -143,7 +141,11 @@ const Article = ({ route }) => {
             </View>
             <View style={Styles.contentcontainer}>
               <HTML
-                ignoredStyles={["fontFamily", "font-family"]}
+                ignoredStyles={[
+                  "fontFamily",
+                  "font-family",
+                  "textDecorationStyle",
+                ]}
                 containerStyle={{
                   backgroundColor: "#fff",
                   padding: 10,
@@ -204,6 +206,43 @@ const Article = ({ route }) => {
               />
             </View>
           </View>
+          <View
+            style={{
+              padding: 12,
+              minHeight: 400,
+              backgroundColor: "#F8F9FA",
+              margin: 10,
+              borderRadius: 10,
+              marginBottom: 80,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 24,
+                fontFamily: "nunito-bold",
+                color: colors.accent,
+                marginVertical: 20,
+              }}
+            >
+              | {article.article_issue[0].title}
+            </Text>
+            {article.article_issue[0].related_articles.map((a) => {
+              return (
+                <TouchableOpacity
+                  key={a.nid}
+                  onPress={() =>
+                    navigation.push("singleArticle", { node: a.nid })
+                  }
+                >
+                  <ArticleRow
+                    title={a.title}
+                    date={a.changed}
+                    hits={a.gfo_hits}
+                  />
+                </TouchableOpacity>
+              );
+            })}
+          </View>
         </ScrollView>
         <FAB
           style={GlobalStyles.fab2}
@@ -218,6 +257,18 @@ const Article = ({ route }) => {
           icon="format-font-size-increase"
           color={"white"}
           onPress={() => fontingPlus()}
+        />
+        <FAB
+          style={GlobalStyles.fab3}
+          small
+          icon="format-align-top"
+          color={"white"}
+          onPress={() =>
+            scrollRef.current?.scrollTo({
+              y: 0,
+              animated: true,
+            })
+          }
         />
       </>
     );

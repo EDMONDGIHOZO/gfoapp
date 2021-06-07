@@ -23,7 +23,7 @@ const Issue = ({ title, date, nid, type }) => {
   const navigation = useNavigation();
   // save the bookmark to db
   const setData = async () => {
-    Bookmarker(title, date, nid, type);
+    Bookmarker(title, date, nid, "gfo_issue");
     setVisibleSnack(!visibleSnack);
   };
 

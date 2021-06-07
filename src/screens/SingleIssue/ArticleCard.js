@@ -11,6 +11,7 @@ import colors from "../../shared/colors";
 import HTML from "react-native-render-html";
 import BIcon from "../../components/tools/buttonWithIcon";
 import { Bookmarker } from "../../shared/Bookmarker";
+import i18n from "../../i18n";
 
 const ArticleCard = ({ title, number, author, abstract, nid, date }) => {
   const navigation = useNavigation();
@@ -19,12 +20,12 @@ const ArticleCard = ({ title, number, author, abstract, nid, date }) => {
   const [readlater, setReadlater] = useState({
     color: colors.accent,
     icon: "watch-later",
-    title: "Read Later",
+    title: i18n.t("readLater"),
   });
 
   const bookmark = () => {
-    Bookmarker(title, date, nid, "Article");
-    setReadlater({ color: "#66cd00", icon: "done", title: "saved" });
+    Bookmarker(title, date, nid, "gfo_article");
+    setReadlater({ color: "#66cd00", icon: "done", title: i18n.t("done") });
     console.log("saved");
   };
 
@@ -65,7 +66,7 @@ const ArticleCard = ({ title, number, author, abstract, nid, date }) => {
           onPress={() => navigation.navigate("singleArticle", { node: nid })}
         >
           <BIcon
-            title={"Read Now"}
+            title={i18n.t("read")}
             color={colors.main}
             iconName={"read-more"}
           />

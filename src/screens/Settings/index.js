@@ -8,6 +8,7 @@ import {
   ScrollView,
   CheckBox,
 } from "react-native";
+import i18n from "../../i18n";
 import GlobalStyles from "../../shared/GlobalStyles";
 import Useful from "./Useful";
 
@@ -21,9 +22,10 @@ const Settings = () => {
             fontFamily: "nunito-bold",
             margin: 10,
             textAlign: "center",
+            textTransform: "capitalize",
           }}
         >
-          Useful Infomations
+          {i18n.t("useful")}
         </Text>
         <View style={{ margin: 10 }}>
           <Useful

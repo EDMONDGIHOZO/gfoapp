@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, ActivityIndicator, TouchableOpacity } from "react-native";
 import GlobalStyles from "../shared/GlobalStyles";
 import ArticleRow from "./ArticleRow";
 import axios from "axios";
 import i18n from "../i18n";
-import SkeletonContent from "react-native-skeleton-content";
+import { useNavigation } from "@react-navigation/native";
+
 import colors from "../shared/colors";
 
 const Featured = () => {
+  const navigation = useNavigation();
   const [articles, setArticles] = useState([]);
   const [fetching, setFetching] = useState(true);
   let systemlanguage = i18n.locale;
@@ -33,6 +29,16 @@ const Featured = () => {
     }
   };
 
+  const viewArticle = (nid) => {
+    if (nid !== null) {
+      navigation.navigate("singleArticle", {
+        node: nid,
+      });
+    } else {
+      alert("sorry");
+    }
+  };
+
   useEffect(() => {
     fetchdata();
     return () => {};
@@ -45,13 +51,16 @@ const Featured = () => {
         <View style={GlobalStyles.cont}>
           {articles.map((article) => {
             return (
-              <ArticleRow
-                title={article.title}
-                date={article.changed}
-                hits={article.gfo_hits}
-                nid={article.nid}
-                key={article.nid.toString()}
-              />
+              <TouchableOpacity
+                onPress={() => viewArticle(article.nid)}
+                key={article.uuid}
+              >
+                <ArticleRow
+                  title={article.title}
+                  date={article.changed}
+                  hits={article.gfo_hits}
+                />
+              </TouchableOpacity>
             );
           })}
         </View>
